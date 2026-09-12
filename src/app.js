@@ -13,11 +13,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend API is running' });
+});
+
 const addUser = require('./dbconn');
 app.use('/adduser', addUser);    
 app.use('/seeuser', seeUser);  
 
 
-app.listen(PORT, () => {
-  console.log('Server running on port 8890');
+const port = process.env.PORT || 8890;
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
