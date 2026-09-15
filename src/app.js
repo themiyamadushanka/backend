@@ -1,13 +1,14 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const cors = require('cors');
-const PORT = process.env.PORT
-const seeUser = require('./seeUser')
+const seeUser = require('./seeUser');
+
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+const EncrollCourse = require('./EncrollCoures');
 
 
 app.use(cors());
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 const addUser = require('./dbconn');
 app.use('/adduser', addUser);    
 app.use('/seeuser', seeUser);  
+app.use('/addEncrollmenet', EncrollCourse);
 
 
 const port = process.env.PORT || 8890;

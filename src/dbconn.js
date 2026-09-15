@@ -1,30 +1,10 @@
 const express = require('express');
-let mySql = require('mysql2');
 const router = express.Router();
 require('dotenv').config();
 router.use(express.json());
 
 const bearerToken = process.env.Btoken;
-
-let conn = mySql.createConnection({
-    host: process.env.DBHOST,
-    user: process.env.DBUSER,
-    password: process.env.DBPASSWORD,
-    database: process.env.DBNAME,
-    connectTimeout: 10000,
-    ssl: {
-        rejectUnauthorized: true
-    }
-});
-
-conn.connect(function(err){
-    if (err) {
-        console.error('Database connection failed:', err.message);
-        return;
-    }
-    console.log("Connected!");
-    
-});
+const conn = require('./connectDB');
 
 router.post('',(req,res)=>{
     if (!req.body || !req.headers) {
