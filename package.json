@@ -3,7 +3,7 @@
     "start": "node src/app.js"
   },
   "engines": {
-    "node": ">=18 <=22"
+    "node": ">=18"
   },
   "dependencies": {
     "cors": "^2.8.6",
