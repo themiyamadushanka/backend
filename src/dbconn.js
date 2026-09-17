@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 require('dotenv').config();
 router.use(express.json());
+const Auth = require('./authMiddleware');
 
 const bearerToken = process.env.Btoken;
 const conn = require('./connectDB');
 
-router.post('',(req,res)=>{
+router.post('',Auth,(req,res)=>{
     if (!req.body || !req.headers) {
         return res.status(400).json({ message: 'Request body is missing' });
     }

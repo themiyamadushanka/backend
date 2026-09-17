@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const conn = require('./connectDB');
-
-router.post('', (req, res) => {
+const Auth = require('./authMiddleware');
+router.post('', Auth,(req, res) => {
     console.log('Content-Type:', req.headers['content-type']);
     console.log('Body:', req.body);
     const { CID } = req.body;

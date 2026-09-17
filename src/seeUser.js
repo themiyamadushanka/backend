@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const conn = require('./connectDB');
-
-router.get('', (req, res) => {
+const Auth = require('./authMiddleware');
+router.get('', Auth,(req, res) => {
     const sql = 'select * from courses';
     conn.query(sql, (err, result) => {
         if (err) {
